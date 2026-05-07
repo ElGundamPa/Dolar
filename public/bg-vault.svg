@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="g-spot-tl" cx="0.12" cy="0.0" r="0.6">
+      <stop offset="0%" stop-color="#3aa6ff" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#3aa6ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g-spot-br" cx="0.92" cy="1" r="0.6">
+      <stop offset="0%" stop-color="#0a5ec2" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#0a5ec2" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="g-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#070b16"/>
+      <stop offset="100%" stop-color="#03060d"/>
+    </linearGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#3aa6ff" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+    <pattern id="thinlines" width="2" height="2" patternUnits="userSpaceOnUse">
+      <path d="M 0 0 L 2 0" fill="none" stroke="#3aa6ff" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#g-base)"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <rect width="100%" height="100%" fill="url(#thinlines)"/>
+  <rect width="100%" height="100%" fill="url(#g-spot-tl)"/>
+  <rect width="100%" height="100%" fill="url(#g-spot-br)"/>
+  <!-- Decorative banknote-style ornamental frame -->
+  <g stroke="#cfd6e4" stroke-opacity="0.08" fill="none" stroke-width="1.5">
+    <rect x="40" y="40" width="1840" height="1000" rx="8"/>
+    <rect x="56" y="56" width="1808" height="968" rx="6" stroke-dasharray="3 5"/>
+    <rect x="72" y="72" width="1776" height="936" rx="4"/>
+  </g>
+</svg>

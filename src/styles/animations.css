@@ -1,0 +1,92 @@
+/**
+ * Centralised keyframes and animation utilities.
+ *
+ * Rules:
+ *   1. Animate only `transform` and `opacity` whenever possible.
+ *   2. No infinite animation should run when `prefers-reduced-motion: reduce`.
+ *   3. Keyframes live here; components apply them via class.
+ */
+
+/* ───── Keyframes ───── */
+
+@keyframes live-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.7); opacity: 0.6; }
+}
+
+@keyframes marquee-bulb {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@keyframes particle-rise {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.4; }
+  100% { transform: translate3d(20px, -120vh, 0); opacity: 0; }
+}
+
+@keyframes logo-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes vault-scan {
+  0%   { transform: translateY(-110%); opacity: 0; }
+  10%  { opacity: 0.45; }
+  90%  { opacity: 0.45; }
+  100% { transform: translateY(110%); opacity: 0; }
+}
+
+@keyframes camera-shake {
+  0%, 100% { transform: translate3d(0,0,0); }
+  20% { transform: translate3d(-4px, 2px, 0); }
+  40% { transform: translate3d(3px, -3px, 0); }
+  60% { transform: translate3d(-2px, 4px, 0); }
+  80% { transform: translate3d(2px, -2px, 0); }
+}
+
+/* ───── Utility classes ───── */
+
+.anim-live-pulse {
+  animation: live-pulse 1.6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+.anim-marquee-bulb {
+  animation: marquee-bulb 1.2s ease-in-out infinite;
+  will-change: opacity;
+}
+.anim-particle {
+  animation: particle-rise linear infinite;
+  will-change: transform, opacity;
+}
+.anim-logo-float {
+  animation: logo-float 4s ease-in-out infinite;
+  will-change: transform;
+}
+.anim-vault-scan {
+  animation: vault-scan 6s linear infinite;
+  will-change: transform, opacity;
+}
+.anim-camera-shake {
+  animation: camera-shake 320ms cubic-bezier(.36,.07,.19,.97);
+}
+
+/* ───── Reduced motion ───── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .anim-live-pulse,
+  .anim-marquee-bulb,
+  .anim-particle,
+  .anim-logo-float,
+  .anim-vault-scan {
+    animation: none !important;
+  }
+}

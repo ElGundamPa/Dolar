@@ -1,0 +1,10 @@
+# Supabase project configuration.
+# See: https://supabase.com/docs/reference/cli/config
+
+# Replace with your own project ref after `supabase link --project-ref <ref>`.
+project_id = "your-project-ref"
+
+[functions.google-sheets-proxy]
+# Public endpoint — called by the dashboard without a session (also from incognito).
+# Without this, the gateway would require JWT and return UNAUTHORIZED_INVALID_JWT_FORMAT.
+verify_jwt = false

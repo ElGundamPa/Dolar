@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120">
+  <defs>
+    <linearGradient id="lg-blue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6cc1ff"/>
+      <stop offset="100%" stop-color="#0a5ec2"/>
+    </linearGradient>
+    <linearGradient id="lg-silver" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e7ecf5"/>
+      <stop offset="100%" stop-color="#9aa3b5"/>
+    </linearGradient>
+  </defs>
+  <!-- Vault disk -->
+  <g transform="translate(60 60)">
+    <circle r="48" fill="#070b16" stroke="url(#lg-blue)" stroke-width="2.5"/>
+    <circle r="40" fill="none" stroke="url(#lg-silver)" stroke-opacity="0.35" stroke-dasharray="2 3"/>
+    <circle r="32" fill="none" stroke="url(#lg-blue)" stroke-opacity="0.45"/>
+    <text y="13" text-anchor="middle" font-family="Cinzel, serif" font-size="46" font-weight="900" fill="url(#lg-blue)">$</text>
+  </g>
+  <!-- Wordmark -->
+  <text x="125" y="58" font-family="Cinzel, serif" font-size="28" font-weight="900" fill="url(#lg-silver)">DOLAR</text>
+  <text x="125" y="92" font-family="Inter, sans-serif" font-size="16" letter-spacing="6" fill="url(#lg-blue)">DASHBOARD</text>
+</svg>

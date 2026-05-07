@@ -1,0 +1,21 @@
+node_modules
+dist
+dist-ssr
+*.local
+.env
+.env.local
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.log
+
+# Local tool / secrets
+.claude/
+
+# Supabase CLI temp (local)
+supabase/.temp/
+
+# Installer / build junk
+*.deb
+*.tsbuildinfo
