@@ -17,6 +17,9 @@ export function StartScreen({ onEnter }: StartScreenProps) {
       // ignore
     }
     try {
+      // iOS / mobile autoplay unlock — play a 1-sample silent buffer on the
+      // user gesture so audio can play later without user interaction.
+      // Verbatim del repo original — no cerrar el context.
       const Ctx =
         window.AudioContext ||
         (window as unknown as { webkitAudioContext: typeof AudioContext })

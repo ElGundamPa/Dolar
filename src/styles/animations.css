@@ -46,6 +46,55 @@
   80% { transform: translate3d(2px, -2px, 0); }
 }
 
+/* Subtle continuous rumble during firing — half the amplitude of camera-shake. */
+@keyframes camera-rumble {
+  0%, 100% { transform: translate3d(0,0,0); }
+  25% { transform: translate3d(-1.5px, 1px, 0); }
+  50% { transform: translate3d(1px, -1.5px, 0); }
+  75% { transform: translate3d(-1px, 1.5px, 0); }
+}
+
+/* Shockwave ring at the muzzle on each fire wave. */
+@keyframes shockwave {
+  0%   { transform: translate(-50%, -50%) scale(0.4); opacity: 0.9; }
+  100% { transform: translate(-50%, -50%) scale(2.6); opacity: 0; }
+}
+
+/* Tiny sparks emerging from the muzzle. */
+@keyframes spark-rise {
+  0%   { transform: translate(-50%, 0) scale(1); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--dx, 0px)), -120px) scale(0); opacity: 0; }
+}
+
+/* Heat shimmer / muzzle haze during fire. */
+@keyframes muzzle-haze {
+  0%, 100% { transform: translate(-50%, 0) scale(1); opacity: 0.32; }
+  50%      { transform: translate(-50%, -8px) scale(1.18); opacity: 0.55; }
+}
+
+/* Confetti pieces drifting down at reveal time. */
+@keyframes confetti-fall {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translate3d(var(--dx, 0px), 95vh, 0) rotate(540deg); opacity: 0; }
+}
+
+/* Money rain — bills falling from above, filling the entire viewport. */
+@keyframes bill-rain {
+  0% {
+    transform: translate3d(0, -20vh, 0) rotate(var(--rot, 0deg));
+    opacity: 0;
+  }
+  6% { opacity: 1; }
+  88% { opacity: 1; }
+  100% {
+    transform:
+      translate3d(var(--dx, 0vw), 115vh, 0)
+      rotate(calc(var(--rot, 0deg) + var(--spin, 540deg)));
+    opacity: 0;
+  }
+}
+
 /* ───── Utility classes ───── */
 
 .anim-live-pulse {
@@ -71,6 +120,30 @@
 .anim-camera-shake {
   animation: camera-shake 320ms cubic-bezier(.36,.07,.19,.97);
 }
+.anim-camera-rumble {
+  animation: camera-rumble 240ms ease-in-out infinite;
+  will-change: transform;
+}
+.anim-shockwave {
+  animation: shockwave 700ms cubic-bezier(.16,1,.3,1) forwards;
+  will-change: transform, opacity;
+}
+.anim-spark-rise {
+  animation: spark-rise 600ms ease-out forwards;
+  will-change: transform, opacity;
+}
+.anim-muzzle-haze {
+  animation: muzzle-haze 400ms ease-in-out infinite;
+  will-change: transform, opacity;
+}
+.anim-confetti {
+  animation: confetti-fall linear forwards;
+  will-change: transform, opacity;
+}
+.anim-bill-rain {
+  animation: bill-rain linear forwards;
+  will-change: transform, opacity;
+}
 
 /* ───── Reduced motion ───── */
 @media (prefers-reduced-motion: reduce) {
@@ -86,7 +159,9 @@
   .anim-marquee-bulb,
   .anim-particle,
   .anim-logo-float,
-  .anim-vault-scan {
+  .anim-vault-scan,
+  .anim-camera-rumble,
+  .anim-muzzle-haze {
     animation: none !important;
   }
 }

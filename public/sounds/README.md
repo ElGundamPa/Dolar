@@ -1,17 +1,27 @@
-# Sounds (optional drop-in replacement)
+# Sounds — synthesized only
 
-By default, `useJackpotSfx` synthesizes the 3 SFX (mechanical start, cash burst, stinger) directly with the Web Audio API — **no binary files required**. This guarantees the app works offline and with any device.
+The 3 jackpot SFX (mechanical / cashBurst / winStinger) are **synthesized
+live** with the Web Audio API in `src/hooks/useJackpotSfx.ts`. There are no
+binary audio files involved.
 
-If you want richer studio-mixed audio, drop these files into this folder and the hook will prefer them automatically:
+The previous version of this hook had a "drop-in MP3 override" feature where
+files like `sfx-mechanical-start.mp3` here would be loaded instead of the
+synth. That feature was **removed** because each missed file (404) created an
+HTMLAudio element in error state, which on Chrome shifts the global audio
+decoder configuration into a fallback path that applies aggressive
+normalization to subsequent audio loads — audible as a vocal-isolation /
+voice-forward artifact on agent songs.
 
-| File | When it plays | Suggested duration |
-|---|---|---|
-| `sfx-mechanical-start.mp3` | Stage 1 — cannon arming / lock-and-load | 0.4 – 0.8 s |
-| `sfx-cash-burst.mp3`       | Stage 2 — bills firing out | 1.5 – 2.5 s |
-| `sfx-win-stinger.mp3`      | Stage 3 — premium "ka-ching" / win confirmation | 0.8 – 1.5 s |
+## To customize the SFX
 
-Master volume and mute are controlled from `localStorage`:
-- `dolar.audio.muted` (`"1"` or `"0"`)
-- `dolar.audio.master` (number `0`–`1`)
+Edit the `mechanical()`, `cashBurst()`, and `winStinger()` functions in
+`src/hooks/useJackpotSfx.ts`. Tweak the oscillator frequencies, durations,
+gains, or filter band-pass ranges directly. They use `beep()`, `slide()`, and
+`noise()` helpers in the same file.
 
-You can also wire the volume + mute UI to a settings panel — see `src/hooks/useJackpotSfx.ts`.
+## Master volume + mute
+
+Configurable from the admin **Settings** tab. Persists in `localStorage`:
+
+- `dolar.audio.muted`  — `"1"` or `"0"`
+- `dolar.audio.master` — number `0`–`1`
